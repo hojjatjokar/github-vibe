@@ -1,6 +1,6 @@
 "use client"
 
-import { useState } from "react"
+import { useEffect, useState } from "react"
 import {
   Layout,
   Button,
@@ -12,11 +12,22 @@ import {
 } from "antd"
 import { GithubOutlined, LogoutOutlined } from "@ant-design/icons"
 import Link from "next/link"
-import { useAuth } from "@/store/auth-context"
+import { useSelector, useDispatch } from "react-redux"
+import { logout, login } from "@/store/auth-slice"
+import { RootState } from "@/store"
 
 function AppHeader() {
   const [isAuthLoading, setIsAuthLoading] = useState(false)
-  const { isLoggedIn, logout } = useAuth()
+  const dispatch = useDispatch()
+  const isLoggedIn = useSelector((state: RootState) => state.auth.isLoggedIn)
+
+  useEffect(() => {
+    // Check for token on client side
+    const token = localStorage.getItem("token")
+    if (token) {
+      dispatch(login())
+    }
+  }, [dispatch])
 
   const startAuthFlow = () => {
     setIsAuthLoading(true)
@@ -40,12 +51,15 @@ function AppHeader() {
       key: "logout",
       label: "Logout",
       icon: <LogoutOutlined />,
-      onClick: logout,
+      onClick: () => {
+        localStorage.removeItem("token")
+        dispatch(logout())
+      },
     },
   ]
 
   return (
-    <Layout.Header className="flex items-center justify-between !bg-white px-6 shadow-[0_2px_8px_#f0f1f2] z-10">
+    <Layout.Header className="flex items-center justify-between !bg-white px-6 shadow-[0_2px_8px_#f0f1f2]">
       <Link href="/" passHref>
         <div className="flex items-center gap-3 cursor-pointer">
           <Avatar alt="GithubVibe logo" size="large" className="!bg-blue-600" />

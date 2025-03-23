@@ -1,36 +1,50 @@
+# Github Vibe - a GitHub Analytics Dashboard
+
+A comprehensive React-based web application that provides deep insights into GitHub ecosystem data through an intuitive, widget-driven interface. Built with modern web technologies and best practices, this dashboard offers developers, maintainers, and open-source enthusiasts a powerful tool to track repository metrics, user activity, and community trends.
+
 This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
 
 ## Getting Started
 
-First, run the development server:
+To connect the Github api, you need to [create an Github app](https://github.com/settings/apps/new) and configure following env variables. Simply add the following to .env file:
+
+```
+NEXT_PUBLIC_GITHUB_CLIENT_ID=add_your_public_client_id_here
+GITHUB_CLIENT_SECRET=add_your_client_secret_here
+NEXT_PUBLIC_BASE_URL=http://localhost:3000
+```
+
+To run the development server:
 
 ```bash
+npm run rtk-codegen
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
 ```
 
 Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+## Deployment
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+To deploy the app, in ci use the following script:
 
-## Learn More
+```
+npm run rtk-codegen && npm run build
+```
 
-To learn more about Next.js, take a look at the following resources:
+## Key Features
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+- Customizable Widget Dashboard:
+  Build personalized views with customizable components for tracking trending repositories, top contributors, issue activity, and more.
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+- Repository Intelligence:
+  Detailed analysis of codebases including commit history, branch management, pull request tracking, and contributor activity with drill-down capabilities.
 
-## Deploy on Vercel
+- User Profiling:
+  Comprehensive profiles showing GitHub user statistics, activity, following networks, and issue/pull request histories.
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+- Real-time GitHub Data:
+  Integrated with GitHub's API to deliver fresh metrics on stars, forks, commits, and repository health indicators.
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+## Technical Highlights
+
+Modern Stack: React + TypeScript + Ant Design + Redux Toolkit Query

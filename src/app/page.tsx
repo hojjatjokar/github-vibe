@@ -1,3 +1,5 @@
+import Explore from "./explore/page"
+
 export default function Home() {
-  return <div>home</div>
+  return <Explore />
 }

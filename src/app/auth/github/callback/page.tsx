@@ -3,21 +3,31 @@
 import { useEffect, Suspense } from "react"
 import { useRouter, useSearchParams } from "next/navigation"
 import { Spin } from "antd"
-import { useAuth } from "@/store/auth-context"
+import { useDispatch } from "react-redux"
+import { login } from "@/store/auth-slice"
+
+const getToken = async (code: string) => {
+  const response = await fetch(`/api/auth/github/callback?code=${code}`)
+  const { accessToken } = await response.json()
+
+  localStorage.setItem("token", accessToken)
+  return accessToken
+}
 
 function CallbackPage() {
+  const dispatch = useDispatch()
   const router = useRouter()
   const searchParams = useSearchParams()
   const code = searchParams.get("code")
-  const { login } = useAuth()
 
   useEffect(() => {
     if (code) {
-      login(code).then(() => {
+      getToken(code).then(() => {
+        dispatch(login())
         router.push("/")
       })
     }
-  }, [code, router, login])
+  }, [code, dispatch, router])
 
   return (
     <div className="flex justify-center mt-24">
@@ -28,7 +38,6 @@ function CallbackPage() {
 
 export default function Callback() {
   return (
-    // You could have a loading skeleton as the `fallback` too
     <Suspense>
       <CallbackPage />
     </Suspense>
