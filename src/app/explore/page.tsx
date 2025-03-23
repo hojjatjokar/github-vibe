@@ -23,15 +23,15 @@ function Explore() {
   return (
     <>
       <div className="mb-4">
-        <Typography.Title level={2} style={{ marginBottom: 8 }}>
+        <Typography.Title level={2} className="mb-2">
           Explore GitHub Ecosystem
         </Typography.Title>
-        <Typography.Text type="secondary" style={{ fontSize: 16 }}>
+        <Typography.Text type="secondary">
           Discover trending repositories, top contributors, and curated awesome
           lists
         </Typography.Text>
 
-        <div style={{ marginTop: 24 }}>
+        <div className="mt-6">
           <WidgetToolbox
             widgets={widgets}
             setWidgets={setWidgets}

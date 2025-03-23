@@ -63,7 +63,7 @@ function WidgetToolbox({
                 onClick={() => addWidget(widget.type)}
                 disabled={isDisabled}
                 aria-label={`Add ${widget.title} widget`}
-                style={{ height: 50 }}
+                className="!h-12"
               >
                 {widget.title}
               </Button>
