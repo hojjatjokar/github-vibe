@@ -6,6 +6,14 @@ This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-
 
 ## Getting Started
 
+To connect the Github api, you need to [create an Github app](https://github.com/settings/apps/new) and configure following env variables. Simply add the following to .env file:
+
+```
+NEXT_PUBLIC_GITHUB_CLIENT_ID=add_your_public_client_id_here
+GITHUB_CLIENT_SECRET=add_your_client_secret_here
+NEXT_PUBLIC_BASE_URL=http://localhost:3000
+```
+
 To run the development server:
 
 ```bash
@@ -14,6 +22,14 @@ npm run dev
 ```
 
 Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+
+## Deployment
+
+To deploy the app, in ci use the following script:
+
+```
+npm run rtk-codegen && npm run build
+```
 
 ## Key Features
 
